@@ -1,0 +1,77 @@
+<div class="container">
+
+    <div class="col-lg-4 offset-md-4 p-4 border border-grey mt-5">
+    <h1 class="text-center mt-4"> Todo App</h1>
+
+        <form (ngSubmit)="onSubmit(taskForm)" class="mt-5" #taskForm="ngForm">
+            <div class="mb-3">
+              <label for="" class="form-label">Tasks to complete</label>
+              <input type="text" class="form-control" ngModel name="task" required>
+              <small class="text-warning" *ngIf="taskForm.invalid && taskForm.dirty">Required Field</small>
+            </div>
+            <div class="d-grid col-12 mx-auto">
+              <button type="submit" class="btn btn-primary"  [disabled]="taskForm.invalid">Add Task</button>
+            </div>
+
+            
+        </form>
+
+        <!-- <ng-container *ngIf="condition">
+         
+        </ng-container> -->
+
+        <div class="tasklist mt-5">
+            <div>
+                <h6 class="text-center bg-light p-2">Today Tasks</h6>
+
+       
+                <ul class="list-group">
+                    <div *ngFor="let t of taskArray; index as i" >
+
+                        <div *ngIf="t.isCompleted;">
+                            
+                        <li  class="list-group-item pb-3   " >
+    
+                            <input (change)="onCheck(i)" class="form-check-input me-3 mt-2" type="checkbox" value=""   required>
+        
+                            <label class="form-check-label mt-1 " for="" >{{ t.taskName }}</label>
+        
+                            <button type="button" class="btn btn-dark mt-1"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; position: absolute; right: 0; margin-right:15px ;" (click)="onDelete(i)">
+                            Delete
+                            </button>
+        
+                        </li>
+                        
+                        </div>
+    
+                       
+                    </div>
+                    <hr>
+                <h6 class="text-center bg-light p-2">Completed Tasks</h6>
+                    
+                    <div *ngFor="let t of taskArray; index as i" >
+                        <div *ngIf="!t.isCompleted;">
+                            
+                        <li  class="list-group-item pb-3  bg-light border border-white" >
+    
+                            <input (change)="onCheck(i)" class="form-check-input me-3 mt-2" type="checkbox" value=""  required>
+        
+                            <label class="form-check-label mt-1 text-muted" for="" >{{ t.taskName }}</label>
+        
+                            <button type="button" class="btn btn-dark mt-1"
+                                style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; position: absolute; right: 0; margin-right:15px ;" (click)="onDelete(i)">
+                            Delete
+                            </button>
+        
+                        </li>                
+                        </div>
+                    </div>
+               
+                </ul>
+            </div> 
+        </div>
+        
+    </div>
+    
+</div>
